@@ -2,8 +2,5 @@ name = "casey-ai-site"
 compatibility_date = "2025-10-01"
 pages_build_output_dir = "dist"
 
-[build]
-command = "npm run build"
-
 [vars]
 NODE_VERSION = "20"
