@@ -1,6 +1,0 @@
-name = "casey-ai-site"
-compatibility_date = "2025-10-01"
-pages_build_output_dir = "dist"
-
-[vars]
-NODE_VERSION = "20"
