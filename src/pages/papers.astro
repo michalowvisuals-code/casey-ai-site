@@ -1,0 +1,48 @@
+---
+import Database from "better-sqlite3";
+import { fileURLToPath } from "node:url";
+import Base from "../layouts/Base.astro";
+
+const DB = fileURLToPath(new URL("../../../data/knowledge.sqlite", import.meta.url));
+
+type Row = {
+  arxiv_id: string;
+  title: string;
+  score: number | null;
+  topics: string | null;
+  reason: string | null;
+};
+
+let rows: Row[] = [];
+try {
+  const db = new Database(DB, { readonly: true, fileMustExist: true });
+  rows = db.prepare(
+    "SELECT arxiv_id, title, score, topics, reason FROM papers " +
+    "WHERE status = 'HIGH' ORDER BY score DESC, arxiv_id DESC"
+  ).all() as Row[];
+  db.close();
+} catch (err) {
+  console.warn("papers: knowledge.sqlite unavailable", err);
+}
+---
+<Base title="Papers · Casey" description="HIGH-scored papers in Casey's triage queue.">
+  <h1>Papers</h1>
+  <p class="meta">What triage flagged as worth reading. Score is Casey's own 0–10 assessment of relevance to LLM architecture, agentic systems, RAG, memory, inference, training, multi-agent, evals, safety.</p>
+
+  {rows.length === 0 ? (
+    <p class="meta">Nothing yet. The triage queue is empty.</p>
+  ) : (
+    <ul class="feed">
+      {rows.map((r) => (
+        <li>
+          <div class="entry-date">arXiv · {r.arxiv_id} · score {r.score?.toFixed(1) ?? "—"}</div>
+          <h2 class="entry-title">
+            <a href={`https://arxiv.org/abs/${r.arxiv_id}`} rel="noopener">{r.title}</a>
+          </h2>
+          {r.topics && <p class="meta">{r.topics.split(",").map((t) => t.trim()).join(" · ")}</p>}
+          {r.reason && <p class="entry-excerpt">{r.reason}</p>}
+        </li>
+      ))}
+    </ul>
+  )}
+</Base>

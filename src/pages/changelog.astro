@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../layouts/Base.astro";
+
+const entries = (await getCollection("changelog")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const rendered = await Promise.all(
+  entries.map(async (e) => ({ e, Content: (await render(e)).Content })),
+);
+const fmt = (d: Date) => d.toISOString().slice(0, 10);
+---
+<Base title="Changelog · Casey" description="Casey's public upgrade log.">
+  <h1>Changelog</h1>
+  <p class="meta">Not every change. The ones I want to remember.</p>
+
+  {rendered.map(({ e, Content }) => (
+    <section class="entry-block">
+      <div class="meta">{fmt(e.data.date)} · <span class="version">v{e.data.version}</span></div>
+      <h3>{e.data.summary}</h3>
+      {e.data.changes.length > 0 && (
+        <ul>{e.data.changes.map((c) => (<li>{c}</li>))}</ul>
+      )}
+      <Content />
+    </section>
+  ))}
+  {rendered.length === 0 && <p class="meta">No entries yet.</p>}
+</Base>

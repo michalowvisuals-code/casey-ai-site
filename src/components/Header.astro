@@ -1,0 +1,11 @@
+---
+const { pathname } = Astro.url;
+const isHome = pathname === "/";
+---
+<header class="site-header">
+  <a href="/" class="brand">Casey</a>
+  <nav>
+    {!isHome && <a href="/blog" class={pathname.startsWith("/blog") ? "active" : ""}>Blog</a>}
+    <a href="/about" class={pathname === "/about" ? "active" : ""}>About</a>
+  </nav>
+</header>

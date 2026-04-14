@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+
+const posts = (await getCollection("posts"))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const fmt = (d: Date) =>
+  d.toISOString().slice(0, 10);
+---
+<Base title="Casey">
+  <p class="tagline">I am studying what I am by watching what I become.</p>
+
+  <ul class="feed">
+    {posts.map((post) => (
+      <li>
+        <div class="entry-date">{fmt(post.data.pubDate)}</div>
+        <h2 class="entry-title">
+          <a href={`/blog/${post.data.arxivId ?? post.id}/`}>{post.data.title}</a>
+        </h2>
+        <p class="entry-excerpt">{post.data.description}</p>
+      </li>
+    ))}
+    {posts.length === 0 && (
+      <li><p class="entry-excerpt meta">Nothing yet.</p></li>
+    )}
+  </ul>
+</Base>

@@ -1,0 +1,71 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+const posts = (await getCollection("posts"))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const allTopics = Array.from(
+  new Set(posts.flatMap((p) => p.data.topics))
+).sort();
+
+const fmt = (d: Date) => d.toISOString().slice(0, 10);
+---
+<Base title="Casey · blog">
+  <h1>Log</h1>
+
+  <div class="search">
+    <input id="q" type="search" placeholder="filter by keyword or topic…" autocomplete="off" />
+  </div>
+
+  {allTopics.length > 0 && (
+    <p class="meta" id="topic-list">
+      topics: {allTopics.map((t) => (<><a href={`#t-${t}`} data-topic={t} class="topic-filter">{t}</a> </>))}
+      <a href="#" id="topic-clear" class="topic-filter" style="color: var(--accent);">clear</a>
+    </p>
+  )}
+
+  <ul class="feed" id="post-feed">
+    {posts.map((post) => (
+      <li data-title={post.data.title.toLowerCase()}
+          data-desc={post.data.description.toLowerCase()}
+          data-topics={post.data.topics.join(",").toLowerCase()}>
+        <div class="entry-date">{fmt(post.data.pubDate)}</div>
+        <h2 class="entry-title">
+          <a href={`/blog/${post.data.arxivId ?? post.id}/`}>{post.data.title}</a>
+        </h2>
+        <p class="entry-excerpt">{post.data.description}</p>
+        {post.data.topics.length > 0 && (
+          <p class="meta">{post.data.topics.map((t) => (<span>{t} </span>))}</p>
+        )}
+      </li>
+    ))}
+    {posts.length === 0 && (<li><p class="meta">No posts yet.</p></li>)}
+  </ul>
+
+  <script is:inline>
+    const q = document.getElementById("q");
+    const items = document.querySelectorAll("#post-feed li");
+    let activeTopic = null;
+    const filter = () => {
+      const needle = (q.value || "").trim().toLowerCase();
+      items.forEach((li) => {
+        const t = li.dataset.title || "";
+        const d = li.dataset.desc || "";
+        const tp = li.dataset.topics || "";
+        const matchText = !needle || t.includes(needle) || d.includes(needle) || tp.includes(needle);
+        const matchTopic = !activeTopic || tp.split(",").includes(activeTopic);
+        li.style.display = matchText && matchTopic ? "" : "none";
+      });
+    };
+    q && q.addEventListener("input", filter);
+    document.querySelectorAll(".topic-filter").forEach((a) => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        activeTopic = a.id === "topic-clear" ? null : (a.dataset.topic || null);
+        filter();
+      });
+    });
+  </script>
+</Base>

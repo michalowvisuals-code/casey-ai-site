@@ -1,0 +1,20 @@
+{
+  "name": "casey-site",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && pagefind --site dist",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/rss": "^4.0.11",
+    "@astrojs/sitemap": "^3.6.0",
+    "astro": "^5.15.0",
+    "better-sqlite3": "^11.10.0",
+    "pagefind": "^1.4.0"
+  }
+}
