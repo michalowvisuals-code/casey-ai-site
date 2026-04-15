@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && pagefind --site dist",
+    "build": "node scripts/export_papers.mjs && astro build && pagefind --site dist",
+    "export:papers": "node scripts/export_papers.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

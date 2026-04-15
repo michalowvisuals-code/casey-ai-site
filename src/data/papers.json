@@ -1,0 +1,117 @@
+{
+  "generated_at": "2026-04-15T03:36:48.431Z",
+  "papers": [
+    {
+      "arxiv_id": "2604.11806",
+      "title": "Detecting Safety Violations Across Many Agent Traces",
+      "score": 9,
+      "topics": "safety,evals,agentic systems,multi-agent coordination",
+      "reason": "The abstract directly addresses the critical intersection of safety auditing and evaluation for agentic systems by proposing a novel method to detect complex, multi-trace violations that existing benchmarks miss."
+    },
+    {
+      "arxiv_id": "2604.11791",
+      "title": "A Mechanistic Analysis of Looped Reasoning Language Models",
+      "score": 9,
+      "topics": "LLM architecture,inference optimization,training methods",
+      "reason": "The abstract provides a deep mechanistic analysis of a novel LLM architecture (looped reasoning) and its inference dynamics, directly addressing architectural design and optimization strategies."
+    },
+    {
+      "arxiv_id": "2604.11790",
+      "title": "ClawGuard: A Runtime Security Framework for Tool-Augmented LLM Agents Against Indirect Prompt Injection",
+      "score": 9,
+      "topics": "agentic systems,safety,LLM architecture",
+      "reason": "The abstract directly addresses a critical safety vulnerability (indirect prompt injection) specific to agentic systems and proposes a novel runtime framework that enforces security at the tool-call boundary without altering the underlying LLM architecture."
+    },
+    {
+      "arxiv_id": "2604.11784",
+      "title": "ClawGUI: A Unified Framework for Training, Evaluating, and Deploying GUI Agents",
+      "score": 9,
+      "topics": "agentic systems,memory,evals,training methods,inference optimization",
+      "reason": "The abstract details a comprehensive framework for GUI agents covering RL training, standardized evaluation, persistent memory, and deployment across devices, directly addressing core topics in agentic systems and training methods."
+    },
+    {
+      "arxiv_id": "2604.11759",
+      "title": "Retrieval Is Not Enough: Why Organizational AI Needs Epistemic Infrastructure",
+      "score": 9,
+      "topics": "RAG,memory,evals,agentic systems",
+      "reason": "The abstract directly addresses RAG limitations by proposing a novel epistemic memory structure and a new evaluation methodology for agentic systems, though it focuses on knowledge representation rather than core LLM architecture or inference optimization."
+    },
+    {
+      "arxiv_id": "2604.11753",
+      "title": "Agentic Aggregation for Parallel Scaling of Long-Horizon Agentic Tasks",
+      "score": 9,
+      "topics": "agentic systems,inference optimization,multi-agent coordination,LLM architecture",
+      "reason": "The abstract directly addresses parallel test-time scaling for agentic tasks, proposing a novel aggregation mechanism that optimizes inference efficiency and coordinates multiple trajectories, fitting the core themes of agentic systems and inference optimization."
+    },
+    {
+      "arxiv_id": "2604.11716",
+      "title": "SWE-AGILE: A Software Agent Framework for Efficiently Managing Dynamic Reasoning Context",
+      "score": 9,
+      "topics": "agentic systems,LLM architecture,inference optimization,memory,evals",
+      "reason": "The abstract directly addresses the core challenges of agentic systems in software engineering by proposing a novel memory management strategy (sliding window and reasoning digests) to optimize inference efficiency and context handling."
+    },
+    {
+      "arxiv_id": "2305.14314",
+      "title": "QLoRA: Efficient Finetuning of Quantized LLMs",
+      "score": 9,
+      "topics": "training methods,LLM architecture,inference optimization",
+      "reason": "Landmark paper on memory-efficient LLM finetuning — highly relevant."
+    },
+    {
+      "arxiv_id": "2604.11721",
+      "title": "Evaluating Cooperation in LLM Social Groups through Elected Leadership",
+      "score": 8,
+      "topics": "multi-agent coordination,agentic systems,evals",
+      "reason": "The abstract directly addresses multi-agent coordination and agentic systems by proposing and evaluating leadership mechanisms to improve social welfare in LLM simulations."
+    },
+    {
+      "arxiv_id": "2604.11699",
+      "title": "Legal2LogicICL: Improving Generalization in Transforming Legal Cases to Logical Formulas via Diverse Few-Shot Learning",
+      "score": 8,
+      "topics": "RAG,LLM architecture,training methods,evals",
+      "reason": "The paper directly addresses RAG for few-shot learning, proposes a novel LLM architecture for legal reasoning, introduces a new evaluation dataset, and discusses training-free methods, though it lacks focus on agentic systems, memory, or safety."
+    },
+    {
+      "arxiv_id": "2604.11805",
+      "title": "Solving Physics Olympiad via Reinforcement Learning on Physics Simulators",
+      "score": 7,
+      "topics": "training methods,LLM architecture",
+      "reason": "The paper focuses on a novel training methodology using physics simulators to enhance LLM reasoning, which directly addresses training methods and implicitly influences architecture capabilities."
+    },
+    {
+      "arxiv_id": "2604.11801",
+      "title": "CLSGen: A Dual-Head Fine-Tuning Framework for Joint Probabilistic Classification and Verbalized Explanation",
+      "score": 7,
+      "topics": "LLM architecture,training methods,evals",
+      "reason": "The abstract proposes a novel fine-tuning framework and architecture for LLMs to improve probability estimation and evaluation metrics while preserving explanation capabilities."
+    },
+    {
+      "arxiv_id": "2604.11748",
+      "title": "LangFlow: Continuous Diffusion Rivals Discrete in Language Modeling",
+      "score": 7,
+      "topics": "LLM architecture,training methods,inference optimization",
+      "reason": "The paper introduces a novel continuous diffusion architecture for language modeling with specific training innovations, directly addressing LLM architecture and training methods while offering implications for inference optimization."
+    },
+    {
+      "arxiv_id": "2604.11741",
+      "title": "Collaborative Multi-Agent Scripts Generation for Enhancing Imperfect-Information Reasoning in Murder Mystery Games",
+      "score": 7,
+      "topics": "LLM architecture,agentic systems,multi-agent coordination,training methods,evals",
+      "reason": "The paper directly addresses multi-agent coordination, training methods (GRPO, fine-tuning), and evaluation of VLMs in complex reasoning scenarios, though it focuses less on RAG, memory, or safety."
+    },
+    {
+      "arxiv_id": "2604.11703",
+      "title": "DreamKG: A KG-Augmented Conversational System for People Experiencing Homelessness",
+      "score": 7,
+      "topics": "RAG,LLM architecture,inference optimization",
+      "reason": "The abstract describes a hybrid RAG system integrating knowledge graphs with LLMs for reliable, context-aware inference, directly addressing architecture and optimization for specific query types."
+    },
+    {
+      "arxiv_id": "2604.11666",
+      "title": "Playing Along: Learning a Double-Agent Defender for Belief Steering via Theory of Mind",
+      "score": 7,
+      "topics": "safety,evals,training methods",
+      "reason": "The paper introduces a novel safety-focused evaluation benchmark for theory-of-mind and adversarial deception, utilizing reinforcement learning to train models, but does not address architecture, agentic systems, RAG, memory, inference optimization, or multi-agent coordination."
+    }
+  ]
+}

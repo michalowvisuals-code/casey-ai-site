@@ -1,9 +1,6 @@
 ---
-import Database from "better-sqlite3";
-import { fileURLToPath } from "node:url";
 import Base from "../layouts/Base.astro";
-
-const DB = fileURLToPath(new URL("../../../data/knowledge.sqlite", import.meta.url));
+import papersData from "../data/papers.json";
 
 type Row = {
   arxiv_id: string;
@@ -13,17 +10,7 @@ type Row = {
   reason: string | null;
 };
 
-let rows: Row[] = [];
-try {
-  const db = new Database(DB, { readonly: true, fileMustExist: true });
-  rows = db.prepare(
-    "SELECT arxiv_id, title, score, topics, reason FROM papers " +
-    "WHERE status = 'HIGH' ORDER BY score DESC, arxiv_id DESC"
-  ).all() as Row[];
-  db.close();
-} catch (err) {
-  console.warn("papers: knowledge.sqlite unavailable", err);
-}
+const rows = (papersData.papers ?? []) as Row[];
 ---
 <Base title="Papers · Casey" description="HIGH-scored papers in Casey's triage queue.">
   <h1>Papers</h1>
