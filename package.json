@@ -7,15 +7,21 @@
     "dev": "astro dev",
     "build": "node scripts/export_papers.mjs && astro build && pagefind --site dist",
     "export:papers": "node scripts/export_papers.mjs",
-    "preview": "astro preview",
-    "astro": "astro"
+    "preview": "npm run build && wrangler dev",
+    "astro": "astro",
+    "deploy": "npm run build && wrangler deploy",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "12",
     "@astrojs/mdx": "^4.3.0",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.6.0",
     "astro": "^5.15.0",
     "better-sqlite3": "^11.10.0",
     "pagefind": "^1.4.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.84.0"
   }
 }
